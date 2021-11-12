@@ -1,8 +1,10 @@
-# example netlify.toml
 [build]
-  command = "ng build"
+  command = "ng build --configuration production && ng run serverless-angular-workshop:serverless:production"
+  publish = "dist/serverless-angular-workshop/browser"
   functions = "netlify/functions"
-  publish = "dist/serverless-angular-workshop"
+
+[[plugins]]
+  package = "@netlify/plugin-angular-universal"
 
   ## Uncomment to use this redirect for Single Page Applications like create-react-app.
   ## Not needed for static site generators.
