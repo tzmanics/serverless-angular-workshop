@@ -1,0 +1,32 @@
+button {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  cursor: pointer;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  margin-left: 15px;
+}
+nav {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-top: 1px solid gray;
+  height: 20px;
+  padding: 22px;
+}
+li {
+  list-style-type: none;
+  display: inline-block;
+}
+nav ul a {
+  color: black;
+  display: block;
+  font-size: 20px;
+  text-decoration: none;
+  width: 5em;
+}
+nav ul a:hover,
+button:hover {
+  color: gray;
+}
+ul {
+  padding: 0;
+}
