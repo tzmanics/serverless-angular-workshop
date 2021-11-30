@@ -1,0 +1,18 @@
+a {
+  font-size: 17px;
+  text-decoration: none;
+}
+button {
+  font-size: 15px;
+  height: 40px;
+  margin-top: 15px;
+  padding: 5px;
+  width: 90px;
+}
+img {
+  margin-bottom: 10px;
+  width: 100%;
+}
+p {
+  margin: 10px 0;
+}
