@@ -1,0 +1,14 @@
+[build]
+  command = "ng build"
+  functions = "netlify/functions"
+  publish = "dist/serverless-angular-workshop"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[dev]
+  command = "npm run start"
+  functions = "netlify/functions"
+
