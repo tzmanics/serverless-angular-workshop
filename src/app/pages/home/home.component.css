@@ -1,0 +1,18 @@
+.info {
+  font-size: 20px;
+  font-weight: medium;
+  margin: 0 auto;
+  width: 80%;
+}
+.info-image {
+  background-image: url("https://images.unsplash.com/photo-1569437061233-5befcf96ee45?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80");
+  background-position: center;
+  background-size: cover;
+  height: 300px;
+}
+p {
+  margin: 30px;
+}
+ul {
+  margin-left: 55px;
+}
