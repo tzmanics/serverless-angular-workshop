@@ -13,6 +13,8 @@ TODO: ME
 
 If you're here for the workshop, this is what we'll be doing:
 
+TODO: remove the times
+
 - 0930: [Introduction to the serverless approach](./walkthroughs/why-serverless/)
 - 1000: [Building and deploying an Angular Universal application](./walkthroughs/build-and-deploy/)
 - 1100: [Creating our first serverless functions](./walkthroughs/first-function/)
