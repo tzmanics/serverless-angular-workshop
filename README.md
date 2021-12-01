@@ -6,6 +6,9 @@ This is the repo for the [Frontend Masters](https://frontendmasters.com/) Server
 
 `git clone https://github.com/tzmanics/serverless-angular-workshop --branch 00_start-here`
 
+## Who is this?
+TODO: ME
+
 ## The Workshop Schedule
 
 If you're here for the workshop, this is what we'll be doing:
