@@ -2,6 +2,9 @@
 
 This is the repo for the [Frontend Masters](https://frontendmasters.com/) Serverless Angular workshop. The `main` branch features the finished project that you can check out at [https://serverless-angular-workshop.netlify.app](https://serverless-angular-workshop.netlify.app).
 
+(。･∀･)ﾉ To begin the workshop clone this repo and checkout the `00_start-here` branch :)
+`git clone https://github.com/tzmanics/serverless-angular-workshop --branch 00_start-here`
+
 ## The Workshop Schedule
 
 If you're here for the workshop, this is what we'll be doing:
