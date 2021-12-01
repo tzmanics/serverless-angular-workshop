@@ -51,7 +51,7 @@ I know _you never_ make mistakes BUT just in case, it's always good to commit an
 
 - [Link to make a GitHub account.](https://github.com/join)
 
-### Deploymwnt & Serverless Functions
+### Deployment & Serverless Functions
 
 For this workshop we'll be using [Netlify](https://www.netlify.com/?utm_source=github-repo&utm_medium=angular-workshop_tzm&utm_campaign=devex) to throw our site online & for the serverless functions. If you don't already have an account you can sign up for a free one. It will then hook up to your git account and allow us to make quick work of our [CI/CD](https://www.netlify.com/products/build/?utm_source=github-repo&utm_medium=angular-workshop_tzm&utm_campaign=devex) setup.
 
