@@ -30,23 +30,23 @@ Happy Coding 👩🏻‍💻!
 
 **STEP 0: Get the Project**
 
-- git clone the project using the `00_start-here` branch
+- [ ] git clone the project using the `00_start-here` branch
 
   `git clone https://github.com/tzmanics/serverless-angular-workshop --branch 00_start-here`
 
 **STEP 1: Make it Angular Universal**
 
-- in the project's main directory run the `ng add` command to make all the necessary changes and additions
+- [ ] in the project's main directory run the `ng add` command to make all the necessary changes and additions
 
   `ng add @nguniversal/express-engine`
 
 **STEP 2: Use the Plugin**
 
-- install the plugin library as a dev dependency to the project
+- [ ] install the plugin library as a dev dependency to the project
 
   `npm install -D @netlify/plugin-angular-universal`
 
-- update the project's `netlify.toml` configuration file (that lives in the base directory) to update the build command, publish directory and [pull in the plugin](https://docs.netlify.com/configure-builds/build-plugins/#configure-settings).
+- [ ] update the project's `netlify.toml` configuration file (that lives in the base directory) to update the build command, publish directory and [pull in the plugin](https://docs.netlify.com/configure-builds/build-plugins/#configure-settings).
 
   ```toml
   # ./netlify.toml
@@ -62,15 +62,15 @@ Happy Coding 👩🏻‍💻!
 
 **STEP 3: Deploy!**
 
-- install the [Netlify CLI](https://docs.netlify.com/cli/get-started/)
+- [ ] install the [Netlify CLI](https://docs.netlify.com/cli/get-started/)
 
   `npm install netlify-cli -g`
 
-- initialize the project (you may need to create an account/login if you haven't already)
+- [ ] initialize the project (you may need to create an account/login if you haven't already)
 
   `netlify init`
 
-- trigger a deploy (there are many ways to do this) by committing and pushing your code changes.
+- [ ] trigger a deploy (there are many ways to do this) by committing and pushing your code changes.
 
   ```bash
   git add .
@@ -82,6 +82,7 @@ Happy Coding 👩🏻‍💻!
 
 **BONUS POINTS**
 
-There are a few other ways to deploy, can you find them?
+- [ ] Change something and deploy the project from the CLI to get a deploy preview before pushing the code.
+- [ ] Try out deploying from the UI
 
 **~FIN~**
