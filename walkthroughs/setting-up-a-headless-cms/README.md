@@ -178,6 +178,11 @@ Happy coding 👩🏻‍💻!
 - [ ] create some content! (pssst I added some resources for this [in this folder](../setting-up-a-headless-cms/))
 - [ ] if all is well, run `sanity deploy`
 
+**Bonus Points**
+
+- [ ] add a custom schema for another type of item, maybe books, or puppies!
+- [ ] change the preview for UI to include a picture
+
 **FIN**
 
 ## Finally, the Function!
