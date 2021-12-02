@@ -2,29 +2,30 @@
 
 This is the repo for the [Frontend Masters](https://frontendmasters.com/) Serverless Angular workshop. The `main` branch features the finished project that you can check out at [https://serverless-angular-workshop.netlify.app](https://serverless-angular-workshop.netlify.app).
 
+## Who is this?
+
+I'm [Tara Z. Manicsic](https://twitter.com/tzmanics), I started my career as a Node engineer that spent a _LOT_ of time provisioning servers, learning vim because (that's all you could use in a container), and learning the woes of other people trying and failing at the feet of server infrastructure aka I worked at a Node.js platform as a service. Fast forward 7 years and I'm now a Developer Experience Engineer at Netlify focusing on the Angular dev experience.
+
+I work with serverless architecture a ton and am stoked to bring it into your stack.
+
+## The Workshop Schedule
+
 (。･∀･)ﾉ To begin the workshop clone this repo and checkout the `00_start-here` branch :)
 
 `git clone https://github.com/tzmanics/serverless-angular-workshop --branch 00_start-here`
 
-## Who is this?
-TODO: ME
-
-## The Workshop Schedule
-
 If you're here for the workshop, this is what we'll be doing:
 
-TODO: remove the times
-
-- 0930: [Introduction to the serverless approach](./walkthroughs/why-serverless/)
-- 1000: [Building and deploying an Angular Universal application](./walkthroughs/build-and-deploy/)
-- 1100: [Creating our first serverless functions](./walkthroughs/first-function/)
-- 1130: [Setting up the Headless CMS via Sanity.io](./walkthroughs/setting-up-a-headless-cms/)
-- 1200: Lunch
-- 1300: [Using a serverless function to get data](./walkthroughs/grabbing-and-displaying-data/)
-- 1400: [Checkout & payment processing with Stripe's API](./walkthroughs/checkout-and-payment-processing/)
-- 1500: [Setting up authentication](./walkthroughs/adding-authentication/) & [role checking](./walkthroughs/role-checking/)
-- 1600: [Code review, resource run down, project wrap up](./walkthroughs/resources/)
-- 1630: Questions & closings
+- [Introduction to the serverless approach](./walkthroughs/why-serverless/)
+- [Building and deploying an Angular Universal application](./walkthroughs/build-and-deploy/)
+- [Creating our first serverless functions](./walkthroughs/first-function/)
+- [Setting up the Headless CMS via Sanity.io](./walkthroughs/setting-up-a-headless-cms/)
+- Lunch
+- [Using a serverless function to get data](./walkthroughs/grabbing-and-displaying-data/)
+- [Checkout & payment processing with Stripe's API](./walkthroughs/checkout-and-payment-processing/)
+- [Setting up authentication](./walkthroughs/adding-authentication/) & [role checking](./walkthroughs/role-checking/)
+- [Code review, resource run down, project wrap up](./walkthroughs/resources/)
+- Questions & closings
 
 ## The Setup
 
@@ -46,7 +47,7 @@ This project was build with Angular v13. If you don't have the Angular CLI insta
 npm install -g @angular/cli
 ```
 
-- [Link on updating to v11.](https://update.angular.io/)
+- [Link on updating to v13.](https://update.angular.io/)
 
 Once you have the Angular CLI installed and up to date, you may want to run the project generation command `ng new` to make sure everything works ok.
 
@@ -79,8 +80,7 @@ Here's a little tldr; of what to have before coming to the workshop. Again, this
 - [ ] A code editor like VS Code, Sublime, sick vim setup, etc.
 - [ ] Angular CLI v13
 - [ ] A git account
-- [ ] A Netlify account
-- [ ] Other service accounts
+- [ ] A Auth0, Netlify, Sanity.io, Stripe account
 - [ ] A good knock-knock joke (just in case)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.1.
