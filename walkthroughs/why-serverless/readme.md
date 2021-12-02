@@ -26,11 +26,11 @@ Serverless architecture applies the 'worry less' approach to many other parts of
 
 #### Original app structure
 
-![original app structure](https://res.cloudinary.com/dzkoxrsdj/image/upload/v1638301576/ps_jgybzn.png)
+![original app structure](https://res.cloudinary.com/dzkoxrsdj/image/upload/v1638301576/ps_jgybzn.jpg)
 
 #### Serverless architecture
 
-![with serverless architecture](https://res.cloudinary.com/dzkoxrsdj/image/upload/v1638301576/sps_qa2lbz.png)
+![with serverless architecture](https://res.cloudinary.com/dzkoxrsdj/image/upload/v1638301576/sps_qa2lbz.jpg)
 
 In the serverless architecture picture above it may look like a lot more moving parts but it's actually parts that already live in your app that are tightly coupled and therefor harder to change without changing many things.
 
