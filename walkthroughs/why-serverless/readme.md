@@ -22,7 +22,7 @@ Although we'll learn a lot by actually doing the work today, there's a [Frontend
 
 ### Serverless Architecture
 
-Serverless architecture applies the 'worry less' approach to many other parts of our applications. This is where we see a lot of 'as a Service' products like, Functions as a Service (Faas), Backend as a Service (BaaS), Platform as a Service (Paas),and more. These products maintain the infrastructure around the functions, databases, and other moving parts of your app. [Martin Fowler covers it in detail in this post](https://martinfowler.com/articles/serverless.html) where he also offers a simplified overview image of the traditional app setup compared to one that utilizes serverless architecture.
+Serverless architecture applies the 'worry less' approach to many other parts of our applications. This is where we see a lot of 'as a Service' products like, Functions as a Service (FaaS), Backend as a Service (BaaS), Platform as a Service (PaaS),and more. These products maintain the infrastructure around the functions, databases, and other moving parts of your app. [Martin Fowler covers it in detail in this post](https://martinfowler.com/articles/serverless.html) where he also offers a simplified overview image of the traditional app setup compared to one that utilizes serverless architecture.
 
 #### Original app structure
 

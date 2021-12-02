@@ -23,7 +23,7 @@ To make it work we need to add this file to a functions folder inside our applic
 [build]
   command = "npm run prerender"
   publish = "dist/serverless-angular-workshop/browser"
-  functions = "funny/fundemental/fun"
+  functions = "funny/fundamental/fun"
 ```
 
 ### The moving parts
@@ -47,7 +47,7 @@ You may notice we have passed a few parameters but didn't use them. Here's what 
 
 #### Query String Parameters
 
-We also have the ability to grab information from the user via the URL with query string parameters. `event.queryStringParameters` are named items in the function-envokig URL inserted behind a '?' and assigned with a '='.
+We also have the ability to grab information from the user via the URL with query string parameters. `event.queryStringParameters` are named items in the function-invoking URL inserted behind a '?' and assigned with a '='.
 
 So, if the URL to call the function (the endpoint) is
 
@@ -77,7 +77,7 @@ Once your function is deployed it will show up in the project's Functions dashbo
 
 Let's really make this stick in our brains by putting it all down in code!
 
-> The [documentation for Netlify Functions lives here]() if you need to dig into it for your excercise.
+> The [documentation for Netlify Functions lives here](https://docs.netlify.com/functions/overview/) if you need to dig into it for your exercise.
 
 ## Exercise 2: Fundamentally Functional!
 
@@ -140,6 +140,6 @@ Happy Coding 👩🏻‍💻!
 **BONUS POINTS**
 
 - [ ] Pass in some event information into the `body` with a string literal.
-- [ ] Grab a query paramater from the URL and pass it to the `body`.
+- [ ] Grab a query parameter from the URL and pass it to the `body`.
 
 **~FIN~**
