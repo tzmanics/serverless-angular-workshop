@@ -9,3 +9,9 @@ Per usual, we'll discuss the ins and outs together, have a code alone excercise 
 As we saw before the Auth0 is packed with lots of settings that we're just skimming the surface of. Let's head into the 'User Management > Roles' section and create a few roles.
 
 ![user mngmt roles menu](https://res.cloudinary.com/dzkoxrsdj/image/upload/v1638393465/Screen_Shot_2021-11-27_at_5.42.13_PM_1_gaj5be.jpg)
+
+We'll create an admin role to check against but it's just a text field so you could potentially add whatever you like. Just keep in mind you'll have to use it throughout your app.
+
+Once we have the role created we can assign it to the users.
+
+![assigning roles](https://res.cloudinary.com/dzkoxrsdj/image/upload/v1638411376/Screen_Shot_2021-11-27_at_5.44.30_PM_aylbly.jpg)
