@@ -2,7 +2,7 @@
 
 ## What is Angular Universal
 
-When we talk about serverless Angular, Universal is often brought up. [Angular Universal](https://angular.io/guide/universal) is Angular's technology used to render applications on the server instead of in the browser. Usually you also have to spin up a server but Netlify has created a build plugin that redirects all the rendering through a serverless function. The server-side rendering just became serverless! Serverless-side rendering? Let's not make that a new term, confusing inception.
+When we talk about serverless Angular, Angular Universal is often brought up. [Angular Universal](https://angular.io/guide/universal) is Angular's technology used to render applications on the server instead of in the browser. Usually you also have to spin up a server but Netlify has created a build plugin that redirects all the rendering through a serverless function. The server-side rendering just became serverless! Serverless-side rendering? Let's not make that a new term, confusing inception.
 
 > Angular Universal also has allows you to prerender your application by just running one command. We won't cover it today but I wanted to note it since it is a very beneficial feature for performance. [Here's a post I wrote all about it!](https://www.netlify.com/blog/2021/02/08/pre-rendering-with-angular-universal/)
 

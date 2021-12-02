@@ -57,9 +57,9 @@ and the user adds some query parameters like this:
 
 `https://mysite.com/.netlify/functions/hello?location=here&name=booboo`
 
-your function will now have a value `event.queryStrinParameters.name === "booboo"`.
+your function will now have a value `event.queryStringParameters.location === "here"` and `event.queryStringParameters.name === "booboo"`.
 
-> 📚 You can learn more about the make up of Netlify functions [in our docs](https://docs.netlify.com/functions/build-with-javascript/?utm_source=blog&utm_medium=ng-func-starter-tzm&utm_campaign=devex) and more about [query strings here](https://en.wikipedia.org/wiki/Query_string).
+> 📚 You can learn more about [query strings here](https://en.wikipedia.org/wiki/Query_string).
 
 #### [Promises, Promises](https://www.youtube.com/watch?v=H8Q83DPZy6E&ab_channel=exDrBob1)
 
@@ -67,7 +67,7 @@ Netlify functions support the [`callback` syntax](https://community.netlify.com/
 
 ### Testing Locally
 
-Netlify gives us a handy development tool to test our function locally without having to deploy: [Netlify Dev](https://www.netlify.com/products/dev/?utm_source=blog&utm_medium=ng-func-starter-tzm&utm_campaign=devex) (Beta). This can be run in the project's root directory using the command `netlify dev`, which will automatically open the project up in a browser window.
+Netlify gives us a handy development tool to test our function locally without having to deploy: [Netlify Dev](https://www.netlify.com/products/dev/?utm_source=blog&utm_medium=ng-func-starter-tzm&utm_campaign=devex). This can be run in the project's root directory using the command `netlify dev`, which will automatically open the project up in a browser window.
 
 To trigger the function, we want to hit the endpoint where the function lives (`.netlify/functions/hello`). This will change based on what you named your function (but not what directory you saved it in as Netlify will always hold it in `.netlify/functions`). So, if it was a different name the endpoint would be `/.netlify/functions/my-netlify-function`.
 
