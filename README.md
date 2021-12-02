@@ -21,7 +21,7 @@ If you're here for the workshop, this is what we'll be doing:
 - [Creating our first serverless functions](./walkthroughs/first-function/)
 - [Setting up the Headless CMS via Sanity.io](./walkthroughs/setting-up-a-headless-cms/)
 - Lunch
-- [Using a serverless function to get data](./walkthroughs/grabbing-and-displaying-data/)
+- [Displaying the CMS data](./walkthroughs/grabbing-and-displaying-data/)
 - [Checkout & payment processing with Stripe's API](./walkthroughs/checkout-and-payment-processing/)
 - [Setting up authentication](./walkthroughs/adding-authentication/) & [role checking](./walkthroughs/role-checking/)
 - [Code review, resource run down, project wrap up](./walkthroughs/resources/)
