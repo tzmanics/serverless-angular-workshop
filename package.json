@@ -6,7 +6,11 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "dev:ssr": "ng run serverless-angular-workshop:serve-ssr",
+    "serve:ssr": "node dist/serverless-angular-workshop/server/main.js",
+    "build:ssr": "ng build && ng run serverless-angular-workshop:server",
+    "prerender": "ng run serverless-angular-workshop:prerender"
   },
   "private": true,
   "dependencies": {
@@ -17,7 +21,11 @@
     "@angular/forms": "~13.0.0",
     "@angular/platform-browser": "~13.0.0",
     "@angular/platform-browser-dynamic": "~13.0.0",
+    "@angular/platform-server": "~13.0.0",
     "@angular/router": "~13.0.0",
+    "@nguniversal/common": "^13.0.1",
+    "@nguniversal/express-engine": "^13.0.1",
+    "express": "^4.15.2",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
@@ -26,6 +34,9 @@
     "@angular-devkit/build-angular": "~13.0.1",
     "@angular/cli": "~13.0.1",
     "@angular/compiler-cli": "~13.0.0",
+    "@netlify/plugin-angular-universal": "^1.0.1",
+    "@nguniversal/builders": "^13.0.1",
+    "@types/express": "^4.17.0",
     "@types/jasmine": "~3.10.0",
     "@types/node": "^12.11.1",
     "jasmine-core": "~3.10.0",

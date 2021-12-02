@@ -11,7 +11,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
     NavigationComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule
   ],
   providers: [],
