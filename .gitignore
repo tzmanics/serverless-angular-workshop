@@ -47,3 +47,7 @@ Thumbs.db
 
 # Local Netlify folder
 .netlify
+
+# backend
+backend/node_modules
+backend/dist
