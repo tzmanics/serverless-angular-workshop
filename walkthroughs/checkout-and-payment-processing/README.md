@@ -82,7 +82,7 @@ Happy coding 👩🏻‍💻!
   ```json
     {
       sessionId: session.id,
-      publishableKey: process.env.STRIPE_PUB_KEY,
+      publishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
     }
   ```
 
