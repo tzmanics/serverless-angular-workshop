@@ -17,13 +17,7 @@ Okie dokie, let's jump in.
 
 ## Setup Stripe Credentials
 
-One of my favorite things about deploying on Netlify is how easy it is to set up environment variables. We just need to add them to our project's 'Environment' settings. Then your whole team has them no matter where they are. Let's look at how this works by setting up the Stripe credentials we'll need for checkout.
-
-### Grabbing Stripe Keys
-
 On the Stripe dashboard at <https://dashboard.stripe.com/test/apikeys>, on the left-hand side under the 'Developer' menu, there is an 'API keys' menu. In that section, we'll find the 'Publishable key' and 'Secret key' we need for this project.
-
-![Stripe API key menu](/img/blog/screen-shot-2021-06-10-at-11.49.33-pm.jpg "Stripe API key menu")
 
 > 🚨 If you have an activated Stripe account and are just trying this out make sure you have 'Viewing test data' toggled on the left-hand side of the dashboard.
 
@@ -36,203 +30,126 @@ Under the project's 'Environment' menu is a section for 'Environment variables'.
 
 Then click 'Save' and we're all set!
 
-![stripe environment variables in netlify dashboard](/img/blog/screen-shot-2021-06-12-at-11.28.47-pm.png "environment variables in netlify dashboard")
+With that, the project credentials are all set and it's time for us to exercise, our brains, that is.
 
-With that, the project credentials are all set.
+## Exercise 5: Do all the things for a Stripe Checkout
 
-## EXCERCISE : Create a Serverless Function for Stripe Checkout
+You have all the tools in your arsenal so it's time to put the to use!
 
-It's time to talk to Stripe so the first thing we'll do is bring in the Stripe libraries by installing them with npm.
+1. create a serverless function to talk to the Stripe Checkout API
+2. make a function that in the `organization-item` class that calls the serverless function
+3. make another function there that triggers the `loadStripe` function
+4. create a 'Donate' button
+   4.5 profit
 
-`npm i stripe @stripe/stripe-js`
+Happy coding 👩🏻‍💻!
 
-Then we can create a serverless in the `netlify/functions` folder called `createCheckout.js`.
+**Step 1: Stripe Serverless function**
 
-In this file, we'll
+- [ ] create a serverless function called `createCheckout.js` in `netlify/functions`
 
-- require the Stripe library and pass in the Stripe secret key environment variable
-- make an async function passing in `event` from the button click
-- assign `product` to the information, we get from `event`
-- make a `listItems` variable with the information Stripe checkout needs ([check out the Stripe docs for more info](https://stripe.com/docs/api/checkout/sessions/line_items))
-- create a stripe checkout session with the project's home page as the URLs and also passing in the `lineItems` we just created ([more info about Stripe's session object here](https://stripe.com/docs/api/checkout/sessions/object))
-- finally, return a `200` status code, the session we just created as well as our Stripe publishable key
+- [ ] install `@stripe/stripe-js` and require it passing in the env var we created with the secret key
+      `const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);`
 
-This is what all those things look like in the form of code a.k.a. this is what the serverless function should look like.
+- [ ] pass the `event` object to the serverless function assign a `JSON.parse` version of `event.body` to `organization`
 
-`netlify/functions/createCheckout.js`
+- [ ] create a `lineItems` array with this object:
 
-```typescript
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-
-exports.handler = async (event) => {
-  const product = JSON.parse(event.body);
-  const lineItems = [
+  ```js
     {
-      name: product.name,
+      name: organization.name,
       currency: "USD",
-      description: product.description,
-      images: [product.image],
-      amount: `${product.price}00`,
+      description: organization.description,
+      images: [organization.image],
+      amount: `${organization.donationAmount}00`,
       quantity: 1,
-    },
-  ];
+    }
+  ```
 
+- [ ] assign `session` to stripe's checkout sessions create function
+
+  ```js
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
     success_url: process.env.URL,
-    cancel_url: process.env.URL,
+    cancel_url: `${process.env.URL}/donate`,
     line_items: lineItems,
   });
+  ```
 
-  return {
-    statusCode: 200,
-    body: JSON.stringify({
+- [ ] return a 200 status code as well as a body containing a `JSON.stringify` version of this object
+
+  ```json
+    {
       sessionId: session.id,
-      publishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
-    }),
-  };
-};
-```
+      publishableKey: process.env.STRIPE_PUB_KEY,
+    }
+  ```
 
-[🐙 Here is the commit where we create the serverless Netlify Function](https://github.com/tzmanics/angular-stripe-checkout/commit/a47b22ef3fc105888b633a65f5b85c355b0155b5).
+- [ ] take a breather! that was a long one! phew!
 
-## Listen for the 'Buy Now'
+**Step 2: Call that function**
 
-No, no, not that voice in your head that says "Buy Now" whenever you see a croissant for sale. We want to listen for when a user clicks the 'Buy Now' button under each product. Now I want a croissant. Anyhoo, let's start by adding the Angular HTTP module which we'll need to post to the serverless function. In the `app.module.ts`, we'll import the HTTP module and add it to imports like so:
+- [ ] in the `organization-item` component class file (`/src/app/components/organization-item/organization-item.component.ts`) import `lastValueFrom` from `rxjs`
 
-`src/app/app.module.ts`
+- [ ] create an `async` function called `triggerCreateCheckout` passing in `eventOrganization: any`
 
-```typescript
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-+ import { HttpClientModule } from '@angular/common/http';
+- [ ] in that function create `const createCheckoutResponse` that `await`s an `http` post call to the serverless function we created passing in `eventOrganization` and an object containing `headers` setting the Content Type
 
-import { AppComponent } from './app.component';
+  ```js
+  const createCheckoutResponse = await this.http.post(
+    "/.netlify/functions/createCheckout",
+    eventOrganization,
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  ```
 
-@NgModule({
-  declarations: [AppComponent],
-+   imports: [BrowserModule, HttpClientModule],
-  providers: [],
-  bootstrap: [AppComponent],
-})
-export class AppModule {}
-```
+- [ ] assign `lastResponse` to an `await` call to `lastValueFrom()` passing in `createCheckoutResponse`
 
-Now that we have the HTTP module set up we will want to inject it into the app component inside the constructor of the `app.component.ts` file:
+  ```js
+  const lastResponse = await lastValueFrom(createCheckoutResponse);
+  ```
 
-```typescript
-constuctor(private http: HttpClient) {}
-```
+- [ ] call `this.openStripe` passing in `lastResponse`
 
-[🐙 Here is the commit where we added the HTTP information for the project](https://github.com/tzmanics/angular-stripe-checkout/commit/396215c22b30cc3b0a6203491a931665b58abe13).
+**Step 3: That `openStripe` function we just used, we need to make it now haha**
 
-### Creating the Stripe Checkout
+- [ ] import `loadStripe` from `@stripe/stripe-js`
 
-The next step is making the function that is triggered by clicking the 'Buy Now' button. This event will have the product information that we need to pass to Stripe. The function we call `triggerCreateCheckout` is very aptly named. This asynchronous function will:
+- [ ] create an async function called `openStripe` that passes a param `stripeParams: any`
 
-- take the event information passed in and assign it to `eventProduct`
-- assign response (which will be declared ahead of time as `private response: any;`) to an awaited function that posts to the Netlify Function `createCheckout`
-- `eventProduct` will be passed to the POST operation to the serverless function along with an object that sets the headers Content-Type
-- use [`toPromise`](https://www.learnrxjs.io/learn-rxjs/operators/utility/topromise) to make the response a promise
-- and finally, pass the repsonse to a function we'll make next to open Stripe
+  ```js
+  openStripe = async (stripeParams: any) => {}`
+  ```
 
-Let's see what this looks like.
+- [ ] assign `stripe` to the `await` version of `loadStripe` passing in the Stripe publishable key
 
-`src/app/app.component.ts`
+  ```js
+  const stripe = await loadStripe(stripeParams.publishableKey);
+  ```
 
-```typescript
-...
-export class AppComponent {
-  products: any = products;
-  private response: any;
+- [ ] await the Stripe `redirectToCheckout` passing in the session id
 
-  constructor(private http: HttpClient) {}
-
-  async triggerCreateCheckout(eventProduct: any) {
-    this.response = await this.http
-      .post('/.netlify/functions/createCheckout', eventProduct, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-      .toPromise();
-    this.openStripe(this.response);
-  }
-}
-```
-
-[🐙 Here is the commit that adds this function](https://github.com/tzmanics/angular-stripe-checkout/commit/92f6e184fb27e31deb1e914eb9f80941f3f76953).
-
-### Opening the Checkout
-
-Let's tackle the function where we actually open up the Stripe checkout. We need to import the `loadStripe` function from Stripe's `stripe-js` library. Then we'll make an async function called `openStripe` that will
-
-- have the Stripe credentials passed to it
-- make a `stripe` variable that is assigned to what is returned from the `loadStripe`function that will have the publishable key passed in
-- once loadStripe is ready run, another awaited function that calls `redirectToCheckout` passing the new `sessionId` to open the purchase page
-
-`src/app/app.component.ts`
-
-```typescript
-import { loadStripe } from '@stripe/stripe-js';
-...
-  openStripe = async (stripeParams: any) => {
-    const stripe = await loadStripe(stripeParams.publishableKey);
-    const { error } = await stripe!.redirectToCheckout({
+  ```js
+  const { error } = await stripe!.redirectToCheckout({
       sessionId: stripeParams.sessionId,
     });
-  };
-```
+  ```
 
-[🐙 Can you guess what this commit is?](https://github.com/tzmanics/angular-stripe-checkout/commit/8ecc87976043743aa2c3bc24e561e94795a92f24) If you guessed the one that adds the `openStripe` function, you're right!
+**Step 4: Make a button**
 
-All together this is what the file looks like:
+- [ ] yea, make a button...
 
-`src/app/app.component.ts`
+  haha but for real in the template file (`/src/app/components/organization-item/organization-item.component.html`) add a button that on `(click)` will call the `triggerCreateCheckout()` function passing in the organization
 
-```typescript
-import { Component } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { loadStripe } from "@stripe/stripe-js";
-import products from "./products.json";
+**FIN** (Nice work!)
 
-@Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"],
-})
-export class AppComponent {
-  products: any = products;
-  private response: any;
-
-  constructor(private http: HttpClient) {}
-
-  async triggerCreateCheckout(eventProduct: any) {
-    this.response = await this.http
-      .post("/.netlify/functions/createCheckout", eventProduct, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .toPromise();
-    this.openStripe(this.response);
-  }
-
-  openStripe = async (stripeParams: any) => {
-    const stripe = await loadStripe(stripeParams.publishableKey);
-    const { error } = await stripe!.redirectToCheckout({
-      sessionId: stripeParams.sessionId,
-    });
-  };
-}
-```
-
-We can test it locally by running [`netlify dev`](https://ntl.fyi/3gKIs8y) or by pushing the new code up to the project repo (which would trigger a new deploy) and seeing how it works in [the real world by going to the live site](https://angular-stripe-checkout.netlify.app/). Whichever environment, we should be able to click the 'Buy Now' button and be sent to the Stripe checkout process for the product clicked.
-
-![stripe checkout page for clicked product](/img/blog/screen-shot-2021-06-14-at-1.43.53-am.jpg "stripe checkout")
-
-> 📚 To learn more about developing Netlify Functions with Angular [check out this blog post on just that](https://ntl.fyi/35zHRBf)
+We can test it locally by running [`netlify dev`](https://ntl.fyi/3gKIs8y) or by pushing the new code up to the project repo (which would trigger a new deploy) and seeing how it works in [the real world by going to the live site](https://serverless-angular-workshop.netlify.app/).
 
 ## Time to Checkout
 
-Guess what, we can check out mentally now because we have a working checkout process! With this project, we were able to grab information about a product, pass it to a serverless Netlify Function that talks to the Stripe API, then open up the Stripe checkout page to handle the transaction. Instead of setting up a whole checkout process yourself leave it to the experts at Stripe. Now, you'll have time to do more important things like eating croissants. Happy coding 👩🏻‍💻!
+Okay not really, BUT look how much we've done: we were able to grab information about a product, pass it to a serverless Netlify Function that talks to the Stripe API, then open up the Stripe checkout page to handle the transaction. Instead of setting up a whole checkout process yourself leave it to the experts at Stripe. Now, you'll have time to do more important things like eating croissants. Happy coding 👩🏻‍💻!
