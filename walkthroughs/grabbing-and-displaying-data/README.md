@@ -11,6 +11,8 @@ In the first part of this section we added a Netlify Function to grab the data w
 One thing that we'll need before anything else is an interface of the organization data we're receiving from Sanity.io. An [interface](https://www.typescriptlang.org/docs/handbook/interfaces.html) is a TypeScript syntactical contract defining types so they can be checked. The `Organization` interface is very complicated...everything is type `string` 🙃. Rest assured you can assign other types in interfaces.
 
 ```typescript
+// /src/app/models/Organization.ts
+
 export interface Organization {
   name: string;
   website: string;
@@ -34,7 +36,7 @@ import { NgModule } from "@angular/core";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { NavigationComponent } from "./navigation/navigation.component";
+import { NavigationComponent } from './components/navigation/navigation.component';
 
 @NgModule({
   declarations: [AppComponent, NavigationComponent],
